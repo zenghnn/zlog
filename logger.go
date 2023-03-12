@@ -1,4 +1,4 @@
-package zaplog
+package zlog
 
 import (
 	rotatelogs "github.com/lestrrat/go-file-rotatelogs"
