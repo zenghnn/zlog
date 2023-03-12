@@ -56,7 +56,7 @@ type Logger struct {
 	inited    bool
 }
 
-func initLogger(cf Options) {
+func InitLogger(cf Options) {
 	os.MkdirAll(cf.LogFileDir, os.ModePerm)
 	logger = &Logger{
 		Opts: &Options{},
