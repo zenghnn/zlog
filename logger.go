@@ -12,7 +12,7 @@ import (
 
 type Options struct {
 	LogFileDir    string //日志路径
-	AppName       string // Filename是要写入日志的文件前缀
+	//AppName       string // Filename是要写入日志的文件前缀
 	ErrorFileName string
 	WarnFileName  string
 	InfoFileName  string
@@ -39,7 +39,14 @@ type Logger struct {
 	inited    bool
 }
 
-func InitLogger(cf Options) {
+func init() {
+	cf := Options{
+		LogFileDir: "./logs",
+		MaxSize:    10,
+		MaxBackups: 7,
+		MaxAge:     7,
+		Config: zap.Config{},
+	}
 	os.MkdirAll(cf.LogFileDir, os.ModePerm)
 	logger = &Logger{
 		Opts: &Options{},
@@ -96,9 +103,9 @@ func (l *Logger) loadCfg() {
 		l.Opts.LogFileDir, _ = filepath.Abs(filepath.Dir(filepath.Join(".")))
 		l.Opts.LogFileDir += sp + "logs" + sp
 	}
-	if l.Opts.AppName == "" {
-		l.Opts.AppName = "app"
-	}
+	//if l.Opts.AppName == "" {
+	//	l.Opts.AppName = "app"
+	//}
 	if l.Opts.ErrorFileName == "" {
 		l.Opts.ErrorFileName = "error.log"
 	}
@@ -133,8 +140,8 @@ func (l *Logger) setSyncers() {
 		//	LocalTime:  true,
 		//})
 		// 每小时一个文件
-		logf, _ := rotatelogs.New(l.Opts.LogFileDir+sp+l.Opts.AppName+"-"+fN+".%Y_%m%d_%H",
-			rotatelogs.WithLinkName(l.Opts.LogFileDir+sp+l.Opts.AppName+"-"+fN),
+		logf, _ := rotatelogs.New(l.Opts.LogFileDir+sp+fN+".%Y_%m%d_%H",
+			rotatelogs.WithLinkName(l.Opts.LogFileDir+sp+fN),
 			rotatelogs.WithMaxAge(30*24*time.Hour),
 			rotatelogs.WithRotationTime(time.Minute),
 		)
