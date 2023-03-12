@@ -199,19 +199,6 @@ func timeUnixNano(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
 	enc.AppendInt64(t.UnixNano() / 1e6)
 }
 
-func Debug(args ...interface{}) {
-	logger.Debug(args)
-}
-func Info(args ...interface{}) {
-	logger.Info(args)
-}
-func Warn(args ...interface{}) {
-	logger.Warn(args)
-}
-func Error(args ...interface{}) {
-	logger.Error(args)
-}
-
 func getEncoder() zapcore.Encoder {
 	encoderConfig := zap.NewProductionEncoderConfig()
 	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
