@@ -31,23 +31,6 @@ var (
 	errorConsoleWS                 = zapcore.Lock(os.Stderr)
 )
 
-//func init() {
-//	os.MkdirAll("./logs/", os.ModePerm)
-//	logger = &Logger{
-//		Opts: &Options{},
-//	}
-//	data := &Options{
-//		LogFileDir: "./logs",
-//		AppName:    "wls",
-//		MaxSize:    10,
-//		MaxBackups: 7,
-//		MaxAge:     7,
-//		Config:     zap.Config{},
-//	}
-//	data.Development = true
-//	initLogger(data)
-//}
-
 type Logger struct {
 	*zap.SugaredLogger
 	sync.RWMutex
