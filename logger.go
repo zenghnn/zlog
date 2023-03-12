@@ -45,7 +45,6 @@ func InitLogger(cf Options) {
 		Opts: &Options{},
 	}
 	cf.Development = true
-	initLogger(cf)
 
 	logger.Lock()
 	defer logger.Unlock()
