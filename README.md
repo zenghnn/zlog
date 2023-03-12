@@ -4,6 +4,17 @@
 
 [![GoDoc][godoc-image]][godoc-url] [![License][license-image]][license-url]
 
+* 傻瓜化，已经使用默认的配置，如果你想修改可以直接复制文件，然后修改配置
+``` go
+	cf := Options{
+		LogFileDir: "./logs",        	//默认生成文件夹为程序文件夹下logs
+		MaxSize:    10,			// 一个文件多少Ｍ大于该数字开始切分文件
+		MaxBackups: 7,			// MaxBackups是要保留的最大旧日志文件数
+		MaxAge:     360,		// MaxAge是根据日期保留旧日志文件的最大天数
+		Config: zap.Config{},
+	}
+```
+
 ## Get
 
 ``` bash
