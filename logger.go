@@ -140,7 +140,7 @@ func (l *Logger) setSyncers() {
 		//	LocalTime:  true,
 		//})
 		// 每小时一个文件
-		logf, _ := rotatelogs.New(l.Opts.LogFileDir+"%Y_%m%d_%H."+sp+fN,
+		logf, _ := rotatelogs.New(l.Opts.LogFileDir+sp+"%Y_%m%d_%H."+fN,
 			rotatelogs.WithLinkName(l.Opts.LogFileDir+sp+fN),
 			rotatelogs.WithMaxAge(30*24*time.Hour),
 			rotatelogs.WithRotationTime(time.Minute),
